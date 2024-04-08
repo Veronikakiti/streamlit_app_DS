@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 from PIL import Image
-
+from model_app import load_model_and_predict
 
 st.set_page_config(
         layout="wide",
