@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 from PIL import Image
-from model.py import *
+from model import *
 st.set_page_config(
         layout="wide",
         initial_sidebar_state="auto",
