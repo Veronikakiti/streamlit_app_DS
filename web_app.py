@@ -32,7 +32,7 @@ def write_prediction(prediction, prediction_probas):
 
 
 def process_side_bar_inputs():
-    st.sidebar.header('Заданные пользователем параметры')
+    st.sidebar.header('Укажите необходимые параметры')
     user_input_df = sidebar_input_features()
     st.write("## Ваши данные")
     st.write(user_input_df)
