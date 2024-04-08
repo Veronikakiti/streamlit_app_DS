@@ -1,7 +1,6 @@
 import pandas as pd
 import streamlit as st
 from PIL import Image
-import load_model_and_predict
 
 st.set_page_config(
         layout="wide",
@@ -13,6 +12,25 @@ st.set_page_config(
 
 st.header("Предсказание кредитоспособности клиента")
 st.subheader("Определим, одобрит ли банк Вам кредит или нет")
+def load_model_and_predict(df, path='data/model_weights.mw'):
+    with open(path, "rb") as file:
+        model = load(file)
+    prediction = model.predict(df)[0]
+    prediction_proba = model.predict_proba(df)[0]
+    encode_prediction_proba = {
+        0: "Вам не повезло",
+        1: "Вам повезло"
+    }
+    encode_prediction = {
+        0: "Увы, банк отказал Вам в кредите",
+        1: "Ура! Вам одобрен кредит!"
+    }
+    prediction_data = {}
+    for key, value in encode_prediction_proba.items():
+        prediction_data.update({value: prediction_proba[key]})
+    prediction_df = pd.DataFrame(prediction_data, index=[0])
+    prediction = encode_prediction[prediction]
+    return prediction, prediction_df
 
 def process_main_page():
     image = Image.open('data/банк.jpg')
