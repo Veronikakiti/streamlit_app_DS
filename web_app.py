@@ -18,16 +18,16 @@ def process_main_page():
     st.image(image)
     personal_info = process_side_bar_inputs()
     if st.button("Предсказать"):
-        prediction, prediction_probas = load_model_and_predict(personal_info)
-        write_prediction(prediction, prediction_probas)
+        prediction, prediction_proba = load_model_and_predict(personal_info)
+        write_prediction(prediction, prediction_proba)
 
 
-def write_prediction(prediction, prediction_probas):
+def write_prediction(prediction, prediction_proba):
     st.write("## Предсказание")
     st.write(prediction)
 
     st.write("## Вероятность предсказания")
-    st.write(prediction_probas)
+    st.write(prediction_proba)
 
 
 def process_side_bar_inputs():
